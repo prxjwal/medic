@@ -38,20 +38,21 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final appBarWidth = mediaQuery.size.width;
+    final deviceSize = mediaQuery.size;
+
     return Scaffold(
       appBar: AppBar(
         title: Row(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            Container(
-              width: 240,
-              child: Text(
+            SizedBox(
+              width: deviceSize.width * 0.6, // 60% of device width
+              child: const Text(
                 'My Cancer Risk Assessment',
               ),
             ),
-            SizedBox(width: 15),
-            CircleAvatar(
+            SizedBox(width: deviceSize.width * 0.03), // 3% of device width
+            const CircleAvatar(
               radius: 15,
               backgroundColor: Colors.grey,
               child: Text(
@@ -60,13 +61,13 @@ class MyHomePage extends StatelessWidget {
               ),
             ),
             SizedBox(
-              width: 6,
+              width: deviceSize.width * 0.01, // 1% of device width
             ),
-            Icon(Icons.notifications),
+            const Icon(Icons.notifications),
           ],
         ),
         leading: IconButton(
-          icon: Icon(Icons.arrow_back),
+          icon: const Icon(Icons.arrow_back),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -75,8 +76,8 @@ class MyHomePage extends StatelessWidget {
       body: Center(
         child: Column(
           children: [
-            Padding(
-              padding: const EdgeInsets.only(top: 20, left: 20),
+            const Padding(
+              padding: EdgeInsets.only(top: 20, left: 20),
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
@@ -94,8 +95,8 @@ class MyHomePage extends StatelessWidget {
             Obx(() => Padding(
                   padding: const EdgeInsets.all(0),
                   child: SfSlider(
-                      activeColor: Color.fromARGB(255, 220, 125, 87),
-                      inactiveColor: Color.fromARGB(255, 226, 255, 255),
+                      activeColor: const Color.fromARGB(255, 220, 125, 87),
+                      inactiveColor: const Color.fromARGB(255, 226, 255, 255),
                       value: questionController.currentQuestion.value
                           .clamp(1, 37)
                           .toDouble(),
@@ -107,7 +108,7 @@ class MyHomePage extends StatelessWidget {
                       enableTooltip: true,
                       thumbIcon: Stack(
                         children: [
-                          Icon(
+                          const Icon(
                             Icons.circle,
                             color: Color.fromARGB(255, 220, 125, 87),
                             size: 20,
@@ -119,7 +120,7 @@ class MyHomePage extends StatelessWidget {
                                 : 2,
                             child: Text(
                               ' ${questionController.currentQuestion.value}',
-                              style: TextStyle(
+                              style: const TextStyle(
                                 fontSize: 12,
                                 color: Colors.white,
                               ),
@@ -136,28 +137,28 @@ class MyHomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                SizedBox(
+                const SizedBox(
                   width: 17,
                 ),
                 Text(
-                    style: TextStyle(
+                    style: const TextStyle(
                       color: Colors.black,
                     ),
                     "${questionController.currentQuestion.value}/37 questions answered"),
               ],
             ),
-            SizedBox(height: 56),
+            const SizedBox(height: 56),
             Row(
               mainAxisAlignment: MainAxisAlignment.center,
               crossAxisAlignment: CrossAxisAlignment.start,
               children: [
-                Text(
+                const Text(
                   "1.",
                   style: TextStyle(color: Colors.black, fontSize: 16),
                 ),
                 SizedBox(
                   width: mediaQuery.size.width - 100,
-                  child: Padding(
+                  child: const Padding(
                     padding: EdgeInsets.only(left: 3),
                     child: Expanded(
                       flex: 1,
@@ -174,39 +175,76 @@ class MyHomePage extends StatelessWidget {
                 ),
               ],
             ),
+            const SizedBox(
+              height: 20,
+            ),
             Container(
-              child: Text(
-                "Yes",
-                style: TextStyle(color: Colors.black),
-              ),
               height: 40,
               width: 350,
               decoration: BoxDecoration(
                 color: Colors.grey.withOpacity(0.4),
                 borderRadius: BorderRadius.circular(20),
               ),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 15, top: 10),
+                child: Text(
+                  "Yes",
+                  style: TextStyle(color: Colors.black),
+                ),
+              ),
             ),
+            const SizedBox(height: 10),
             Container(
-              child: Text("No"),
               height: 40,
               width: 350,
               decoration: BoxDecoration(
                 color: Colors.grey.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(20),
+              ),
+              child: const Padding(
+                padding: EdgeInsets.only(left: 15, top: 10),
+                child: Text(
+                  "No",
+                  style: TextStyle(color: Colors.black),
+                ),
               ),
             ),
+            SizedBox(
+              height: mediaQuery.size.height / 2 - 150,
+            ),
             Row(
+              crossAxisAlignment: CrossAxisAlignment.center,
+              mainAxisAlignment: MainAxisAlignment.center,
               children: [
                 ElevatedButton(
                   onPressed: () {},
                   style: ElevatedButton.styleFrom(
-                    primary: Colors.grey,
-                    onPrimary: Colors.white,
+                    foregroundColor: Colors.grey,
+                    backgroundColor: Colors.white, // text color
+                    side: const BorderSide(
+                      color: Colors.grey, // border color
+                      width: 1,
+                    ),
                     shape: RoundedRectangleBorder(
                       borderRadius: BorderRadius.circular(30),
                     ),
+                    minimumSize: const Size(150, 50),
                   ),
-                  child: Text('Previous'),
+                  child: const Text('Previous'),
+                ),
+                const SizedBox(width: 20),
+                ElevatedButton(
+                  onPressed: () {},
+                  style: ElevatedButton.styleFrom(
+                    foregroundColor: Colors.white,
+                    backgroundColor: Colors.grey,
+                    side: BorderSide.none,
+                    shape: RoundedRectangleBorder(
+                      borderRadius: BorderRadius.circular(30),
+                    ),
+                    minimumSize: const Size(180, 50),
+                  ),
+                  child: const Text('Next'),
                 ),
               ],
             )
