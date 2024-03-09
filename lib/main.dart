@@ -80,58 +80,110 @@ class MyHomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
+                  SizedBox(
+                    height: 8,
+                  ),
                   Text('Complete the questionnaire at your own pace',
                       style: TextStyle(
                         color: Colors.black,
-                        fontSize: 16,
+                        fontSize: 15,
                       )),
                 ],
               ),
             ),
-            Obx(() => SfSlider(
-                value: questionController.currentQuestion.value
-                    .clamp(1, 37)
-                    .toDouble(),
-                min: 1,
-                max: 37,
-                interval: 1,
-                showTicks: false,
-                showLabels: false,
-                enableTooltip: true,
-                thumbIcon: Stack(
-                  children: [
-                    Icon(
-                      Icons.circle,
-                      color: Color.fromARGB(255, 220, 125, 87),
-                      size: 20,
+            Obx(() => Padding(
+                  padding: const EdgeInsets.all(0),
+                  child: SfSlider(
+                      activeColor: Color.fromARGB(255, 220, 125, 87),
+                      inactiveColor: Color.fromARGB(255, 226, 255, 255),
+                      value: questionController.currentQuestion.value
+                          .clamp(1, 37)
+                          .toDouble(),
+                      min: 1,
+                      max: 37,
+                      interval: 1,
+                      showTicks: false,
+                      showLabels: false,
+                      enableTooltip: true,
+                      thumbIcon: Stack(
+                        children: [
+                          Icon(
+                            Icons.circle,
+                            color: Color.fromARGB(255, 220, 125, 87),
+                            size: 20,
+                          ),
+                          Positioned(
+                            bottom: 2,
+                            right: questionController.currentQuestion.value <= 9
+                                ? 5.7
+                                : 2,
+                            child: Text(
+                              ' ${questionController.currentQuestion.value}',
+                              style: TextStyle(
+                                fontSize: 12,
+                                color: Colors.white,
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                      onChanged: (value) {
+                        questionController.currentQuestion.value =
+                            value.toInt();
+                      },
+                      onChangeEnd: (value) {}),
+                )),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.start,
+              children: [
+                SizedBox(
+                  width: 17,
+                ),
+                Text(
+                    style: TextStyle(
+                      color: Colors.black,
                     ),
-                    Positioned(
-                      bottom: 2,
-                      right: 2,
+                    "${questionController.currentQuestion.value}/37 questions answered"),
+              ],
+            ),
+            SizedBox(height: 56),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.center,
+              crossAxisAlignment: CrossAxisAlignment.start,
+              children: [
+                Text(
+                  "1.",
+                  style: TextStyle(color: Colors.black, fontSize: 16),
+                ),
+                SizedBox(
+                  width: mediaQuery.size.width - 100,
+                  child: Padding(
+                    padding: EdgeInsets.only(left: 3),
+                    child: Expanded(
+                      flex: 1,
                       child: Text(
-                        ' ${questionController.currentQuestion.value}',
+                        "Have you ever been diagnosed with cancer?",
                         style: TextStyle(
-                          fontSize: 12,
-                          color: Colors.white,
+                          color: Colors.black,
+                          fontSize: 16,
                         ),
+                        softWrap: true,
                       ),
                     ),
-                  ],
+                  ),
                 ),
-                onChanged: (value) {
-                  questionController.currentQuestion.value = value.toInt();
-                },
-                onChangeEnd: (value) {})),
-            Text(
-                "${questionController.currentQuestion.value}/37 questions answered"),
-            Text(" 1. Have you ever been diagnosed with cancer? "),
+              ],
+            ),
             Container(
-              child: Text("Yes"),
+              child: Text(
+                "Yes",
+                style: TextStyle(color: Colors.black),
+              ),
               height: 40,
               width: 350,
               decoration: BoxDecoration(
                 color: Colors.grey.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(15),
+                borderRadius: BorderRadius.circular(20),
               ),
             ),
             Container(
