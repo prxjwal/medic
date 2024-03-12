@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 import 'package:syncfusion_flutter_sliders/sliders.dart';
 import 'package:get/get.dart';
+import 'package:flutter/cupertino.dart';
 
 void main() {
   runApp(const MyApp());
@@ -38,22 +39,14 @@ class MyHomePage extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     final mediaQuery = MediaQuery.of(context);
-    final deviceSize = mediaQuery.size;
 
     return Scaffold(
       appBar: AppBar(
-        title: Row(
-          mainAxisAlignment: MainAxisAlignment.center,
-          children: [
-            SizedBox(
-              width: deviceSize.width * 0.6, // 60% of device width
-              child: const Text(
-                style: TextStyle(fontFamily: "Poppins-Bold"),
-                'My Cancer Risk Assessment',
-              ),
-            ),
-            SizedBox(width: deviceSize.width * 0.03), // 3% of device width
-            const CircleAvatar(
+        centerTitle: true,
+        actions: const [
+          Padding(
+            padding: EdgeInsets.only(right: 17),
+            child: CircleAvatar(
               radius: 15,
               backgroundColor: Colors.grey,
               child: Text(
@@ -61,14 +54,21 @@ class MyHomePage extends StatelessWidget {
                 style: TextStyle(color: Colors.white),
               ),
             ),
-            SizedBox(
-              width: deviceSize.width * 0.01, // 1% of device width
+          ),
+          Padding(
+            padding: EdgeInsets.only(right: 20),
+            child: Icon(
+              CupertinoIcons.bell,
+              size: 24,
             ),
-            const Icon(Icons.notifications),
-          ],
+          ),
+        ],
+        title: const Text(
+          style: TextStyle(fontFamily: "Poppins-Bold"),
+          'My Cancer Risk Assessment',
         ),
         leading: IconButton(
-          icon: const Icon(Icons.arrow_back),
+          icon: const Icon(CupertinoIcons.back),
           onPressed: () {
             Navigator.of(context).pop();
           },
@@ -82,16 +82,16 @@ class MyHomePage extends StatelessWidget {
               child: Row(
                 mainAxisAlignment: MainAxisAlignment.start,
                 children: [
-                  SizedBox(
-                    height: 8,
+                  Padding(
+                    padding: EdgeInsets.only(top: 13),
+                    child: Text('Complete the questionnaire at your own pace',
+                        style: TextStyle(
+                          fontFamily: "Poppins-Regular",
+                          fontWeight: FontWeight.w400,
+                          color: Colors.black,
+                          fontSize: 16,
+                        )),
                   ),
-                  Text('Complete the questionnaire at your own pace',
-                      style: TextStyle(
-                        fontFamily: "Poppins-Regular",
-                        fontWeight: FontWeight.w400,
-                        color: Colors.black,
-                        fontSize: 16,
-                      )),
                 ],
               ),
             ),
@@ -142,140 +142,173 @@ class MyHomePage extends StatelessWidget {
             Row(
               mainAxisAlignment: MainAxisAlignment.start,
               children: [
-                const SizedBox(
-                  width: 17,
+                Padding(
+                  padding: const EdgeInsets.only(left: 21),
+                  child: Text(
+                      style: const TextStyle(
+                        fontFamily: "Poppins-Medium",
+                        fontWeight: FontWeight.w200,
+                        color: Colors.black,
+                      ),
+                      "${questionController.currentQuestion.value}/37 questions answered"),
                 ),
-                Text(
-                    style: const TextStyle(
-                      fontFamily: "Poppins-Medium",
-                      fontWeight: FontWeight.w200,
-                      color: Colors.black,
-                    ),
-                    "${questionController.currentQuestion.value}/37 questions answered"),
               ],
             ),
-            const SizedBox(height: 56),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.center,
-              crossAxisAlignment: CrossAxisAlignment.start,
-              children: [
-                const Text(
-                  "1.",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontSize: 16,
-                      fontFamily: "Poppins-Medium",
-                      fontWeight: FontWeight.w600),
+            Padding(
+              padding: const EdgeInsets.only(top: 17),
+              child: Container(
+                color: Colors.grey.withOpacity(0.1),
+                child: Column(
+                  children: [
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                          start: 16, top: 13, end: 20),
+                      child: Row(
+                        mainAxisAlignment: MainAxisAlignment.center,
+                        crossAxisAlignment: CrossAxisAlignment.start,
+                        children: [
+                          const Text(
+                            "1.",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                                fontFamily: "Poppins-Medium",
+                                fontWeight: FontWeight.w600),
+                          ),
+                          SizedBox(
+                            width: mediaQuery.size.width - 100,
+                            child: const Padding(
+                              padding: EdgeInsets.only(left: 3),
+                              child: Expanded(
+                                flex: 1,
+                                child: Text(
+                                  "Have you ever been diagnosed with cancer?",
+                                  style: TextStyle(
+                                    fontFamily: "Poppins-Medium",
+                                    fontWeight: FontWeight.w600,
+                                    color: Colors.black,
+                                    fontSize: 16,
+                                  ),
+                                  softWrap: true,
+                                ),
+                              ),
+                            ),
+                          ),
+                        ],
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                          top: 37, start: 16, end: 16),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromRGBO(122, 139, 164, 0.18),
+                          minimumSize: const Size(358, 50),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                        ),
+                        onPressed: () {},
+                        child: const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "Yes",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Poppins-Medium",
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ),
+                    ),
+                    Padding(
+                      padding: const EdgeInsetsDirectional.only(
+                          start: 16, end: 16, top: 8, bottom: 24),
+                      child: ElevatedButton(
+                        style: ElevatedButton.styleFrom(
+                          backgroundColor:
+                              const Color.fromRGBO(122, 139, 164, 0.18),
+                          minimumSize: const Size(358, 50),
+                          padding: const EdgeInsets.symmetric(
+                              horizontal: 20, vertical: 10),
+                        ),
+                        onPressed: () {},
+                        child: const Align(
+                          alignment: Alignment.centerLeft,
+                          child: Text(
+                            "No",
+                            style: TextStyle(
+                                color: Colors.black,
+                                fontFamily: "Poppins-Medium",
+                                fontWeight: FontWeight.w400),
+                          ),
+                        ),
+                      ),
+                    ),
+                  ],
                 ),
-                SizedBox(
-                  width: mediaQuery.size.width - 100,
-                  child: const Padding(
-                    padding: EdgeInsets.only(left: 3),
+              ),
+            ),
+            Padding(
+              padding: const EdgeInsetsDirectional.only(top: 247),
+              child: Row(
+                crossAxisAlignment: CrossAxisAlignment.center,
+                mainAxisAlignment: MainAxisAlignment.center,
+                children: [
+                  Padding(
+                    padding:
+                        const EdgeInsetsDirectional.only(end: 18, start: 17),
                     child: Expanded(
                       flex: 1,
-                      child: Text(
-                        "Have you ever been diagnosed with cancer?",
-                        style: TextStyle(
-                          fontFamily: "Poppins-Medium",
-                          fontWeight: FontWeight.w600,
-                          color: Colors.black,
-                          fontSize: 16,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor:
+                              const Color.fromRGBO(122, 139, 164, 0.75),
+                          backgroundColor: Colors.white, // text color
+
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          minimumSize: const Size(150, 50),
                         ),
-                        softWrap: true,
+                        child: const Text(
+                          'Previous',
+                          style: TextStyle(
+                              color: Color.fromRGBO(122, 139, 164, 0.75),
+                              fontFamily: "Poppins-Medium",
+                              fontWeight: FontWeight.w600),
+                        ),
                       ),
                     ),
                   ),
-                ),
-              ],
-            ),
-            const SizedBox(
-              height: 20,
-            ),
-            Container(
-              height: 40,
-              width: 350,
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 15, top: 10),
-                child: Text(
-                  "Yes",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: "Poppins-Medium",
-                      fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-            const SizedBox(height: 10),
-            Container(
-              height: 40,
-              width: 350,
-              decoration: BoxDecoration(
-                color: Colors.grey.withOpacity(0.4),
-                borderRadius: BorderRadius.circular(20),
-              ),
-              child: const Padding(
-                padding: EdgeInsets.only(left: 15, top: 10),
-                child: Text(
-                  "No",
-                  style: TextStyle(
-                      color: Colors.black,
-                      fontFamily: "Poppins-Medium",
-                      fontWeight: FontWeight.w600),
-                ),
-              ),
-            ),
-            SizedBox(
-              height: mediaQuery.size.height / 2 - 150,
-            ),
-            Row(
-              crossAxisAlignment: CrossAxisAlignment.center,
-              mainAxisAlignment: MainAxisAlignment.center,
-              children: [
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.grey,
-                    backgroundColor: Colors.white, // text color
-                    side: const BorderSide(
-                      color: Colors.grey, // border color
-                      width: 1,
+                  Padding(
+                    padding: const EdgeInsetsDirectional.only(end: 16),
+                    child: Expanded(
+                      flex: 1,
+                      child: ElevatedButton(
+                        onPressed: () {},
+                        style: ElevatedButton.styleFrom(
+                          foregroundColor: Colors.white,
+                          backgroundColor:
+                              const Color.fromRGBO(122, 139, 164, 0.75),
+                          side: BorderSide.none,
+                          shape: RoundedRectangleBorder(
+                            borderRadius: BorderRadius.circular(30),
+                          ),
+                          minimumSize: const Size(190, 48),
+                        ),
+                        child: const Text(
+                          'Next',
+                          style: TextStyle(
+                              fontFamily: "Poppins-Medium",
+                              fontWeight: FontWeight.w600),
+                        ),
+                      ),
                     ),
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    minimumSize: const Size(150, 50),
                   ),
-                  child: const Text(
-                    'Previous',
-                    style: TextStyle(
-                        fontFamily: "Poppins-Medium",
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-                const SizedBox(width: 20),
-                ElevatedButton(
-                  onPressed: () {},
-                  style: ElevatedButton.styleFrom(
-                    foregroundColor: Colors.white,
-                    backgroundColor: Colors.grey,
-                    side: BorderSide.none,
-                    shape: RoundedRectangleBorder(
-                      borderRadius: BorderRadius.circular(30),
-                    ),
-                    minimumSize: const Size(180, 50),
-                  ),
-                  child: const Text(
-                    'Next',
-                    style: TextStyle(
-                        fontFamily: "Poppins-Medium",
-                        fontWeight: FontWeight.w600),
-                  ),
-                ),
-              ],
+                ],
+              ),
             )
           ],
         ),
