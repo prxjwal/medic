@@ -48,6 +48,7 @@ class MyHomePage extends StatelessWidget {
             SizedBox(
               width: deviceSize.width * 0.6, // 60% of device width
               child: const Text(
+                style: TextStyle(fontFamily: "Poppins-Bold"),
                 'My Cancer Risk Assessment',
               ),
             ),
@@ -86,8 +87,10 @@ class MyHomePage extends StatelessWidget {
                   ),
                   Text('Complete the questionnaire at your own pace',
                       style: TextStyle(
+                        fontFamily: "Poppins-Regular",
+                        fontWeight: FontWeight.w400,
                         color: Colors.black,
-                        fontSize: 15,
+                        fontSize: 16,
                       )),
                 ],
               ),
@@ -121,6 +124,8 @@ class MyHomePage extends StatelessWidget {
                             child: Text(
                               ' ${questionController.currentQuestion.value}',
                               style: const TextStyle(
+                                fontFamily: "Poppins-Regular",
+                                fontWeight: FontWeight.w300,
                                 fontSize: 12,
                                 color: Colors.white,
                               ),
@@ -142,6 +147,8 @@ class MyHomePage extends StatelessWidget {
                 ),
                 Text(
                     style: const TextStyle(
+                      fontFamily: "Poppins-Medium",
+                      fontWeight: FontWeight.w200,
                       color: Colors.black,
                     ),
                     "${questionController.currentQuestion.value}/37 questions answered"),
@@ -154,7 +161,11 @@ class MyHomePage extends StatelessWidget {
               children: [
                 const Text(
                   "1.",
-                  style: TextStyle(color: Colors.black, fontSize: 16),
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontSize: 16,
+                      fontFamily: "Poppins-Medium",
+                      fontWeight: FontWeight.w600),
                 ),
                 SizedBox(
                   width: mediaQuery.size.width - 100,
@@ -165,6 +176,8 @@ class MyHomePage extends StatelessWidget {
                       child: Text(
                         "Have you ever been diagnosed with cancer?",
                         style: TextStyle(
+                          fontFamily: "Poppins-Medium",
+                          fontWeight: FontWeight.w600,
                           color: Colors.black,
                           fontSize: 16,
                         ),
@@ -189,7 +202,10 @@ class MyHomePage extends StatelessWidget {
                 padding: EdgeInsets.only(left: 15, top: 10),
                 child: Text(
                   "Yes",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: "Poppins-Medium",
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ),
@@ -205,7 +221,10 @@ class MyHomePage extends StatelessWidget {
                 padding: EdgeInsets.only(left: 15, top: 10),
                 child: Text(
                   "No",
-                  style: TextStyle(color: Colors.black),
+                  style: TextStyle(
+                      color: Colors.black,
+                      fontFamily: "Poppins-Medium",
+                      fontWeight: FontWeight.w600),
                 ),
               ),
             ),
@@ -230,7 +249,12 @@ class MyHomePage extends StatelessWidget {
                     ),
                     minimumSize: const Size(150, 50),
                   ),
-                  child: const Text('Previous'),
+                  child: const Text(
+                    'Previous',
+                    style: TextStyle(
+                        fontFamily: "Poppins-Medium",
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
                 const SizedBox(width: 20),
                 ElevatedButton(
@@ -244,7 +268,12 @@ class MyHomePage extends StatelessWidget {
                     ),
                     minimumSize: const Size(180, 50),
                   ),
-                  child: const Text('Next'),
+                  child: const Text(
+                    'Next',
+                    style: TextStyle(
+                        fontFamily: "Poppins-Medium",
+                        fontWeight: FontWeight.w600),
+                  ),
                 ),
               ],
             )

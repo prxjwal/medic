@@ -37,7 +37,6 @@ dependencies:
   cupertino_icons: ^1.0.2
   get: ^4.6.6
   syncfusion_flutter_sliders: ^24.2.9
-  google_fonts: 6.1.0
   
 
 dev_dependencies:
@@ -56,6 +55,12 @@ dev_dependencies:
 
 # The following section is specific to Flutter packages.
 flutter:
+  fonts:
+    - family: Poppins
+      fonts:
+        - asset: /Users/prxjwal/Documents/Projects/medic/medic/fonts/Poppins-Bold.ttf
+        - asset: /Users/prxjwal/Documents/Projects/medic/medic/fonts/Poppins-Medium.ttf
+        - asset: /Users/prxjwal/Documents/Projects/medic/medic/fonts/Poppins-Regular.ttf
 
   # The following line ensures that the Material Icons font is
   # included with your application, so that you can use the icons in
@@ -79,16 +84,17 @@ flutter:
   # list giving the asset and other descriptors for the font. For
   # example:
   # fonts:
-  #   - family: Schyler
-  #     fonts:
-  #       - asset: fonts/Schyler-Regular.ttf
-  #       - asset: fonts/Schyler-Italic.ttf
-  #         style: italic
-  #   - family: Trajan Pro
-  #     fonts:
-  #       - asset: fonts/TrajanPro.ttf
-  #       - asset: fonts/TrajanPro_Bold.ttf
-  #         weight: 700
+    # - family: Poppins
+    #   fonts:
+    #     - asset: fonts/Poppins-Bold.ttf 
+    #     - asset: fonts/Poppins-Medium.ttf
+    #     - asset: fonts/Poppins-Regular.ttf
+        
+    # - family: Trajan Pro
+    #   fonts:
+    #     - asset: fonts/TrajanPro.ttf
+    #     - asset: fonts/TrajanPro_Bold.ttf
+    #       weight: 700
   #
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages
